@@ -11,6 +11,7 @@ jobs:
       - name: Execute shell script
         run: echo "Script is not available"
   ascii_job1:
+    needs: ascii_job
     runs-on: ubuntu-latest
     steps:
       - name: verigy the job
