@@ -1,3 +1,5 @@
+/usr/bin/bash
+
 chmod +x
 ls -lrth
 cowsay -f dragon " Run for cover, I a Dragon RAWR" >> dragon.txt
