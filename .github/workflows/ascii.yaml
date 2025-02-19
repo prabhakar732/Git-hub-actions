@@ -5,11 +5,11 @@ on: [push]
 jobs:
   ascii_job:
    runs-on: ubuntu-latest
-    steps:
-    - name: checkout code
-      uses: actions/checkout@v4
-    - name: Execute shell script
-      run: echo "Script is not available"
+     steps:
+     - name: checkout code
+       uses: actions/checkout@v4
+     - name: Execute shell script
+       run: echo "Script is not available"
   ascii_job1:
     runs-on: ubuntu-latest
       steps:
