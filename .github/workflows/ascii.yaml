@@ -1,0 +1,16 @@
+name: Ascii Workflow
+
+on: [push]
+
+jobs:
+  ascii_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+    - name: install cowsay program
+      run: cowsay -f dragon " Run for cover, I a Dragon RAWR" >> dragon.txt
+    - name: test file exists
+      run: grep -i "dragon" dragon.txt
+    - name: read File
+      run: cat dragon.txt
