@@ -9,7 +9,13 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v4
       - name: Execute shell script
-        run: echo "Script is not available"
+        run: echo "Script is not available" > data.txt
+      - name: upload artificate
+        uses: actions/upload-artifact@v3
+        with:
+          name: upload-data
+          path: data.txt
+
   ascii_job1:
     needs: ascii_job
     runs-on: ubuntu-latest
@@ -18,4 +24,9 @@ jobs:
         run: echo "run the job" > data.txt
       - name: display the data
         run: ls -l
+      - name: download-artifict
+        uses: actions/download-artifcat@v3
+        with:
+          name: data.txt
+
 
