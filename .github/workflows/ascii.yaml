@@ -11,7 +11,7 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v4
       - name: display-env
-        run: echo "varianle name": $name
+        run: echo "varianle name: ${{name}}"
       - name: Execute shell script
         run: echo "Script is not available" > data.txt
       - name: upload artificate
