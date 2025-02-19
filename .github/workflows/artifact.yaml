@@ -12,9 +12,10 @@ jobs:
 
     - name: create text file
       run: |
-      echo "Hello World" > hello.txt
-      ls -lrth
-      cat hello.txt
+        echo "Hello World" > hello.txt
+        ls -lrth
+        cat hello.txt
+      
     - name: Archive text file
       uses: actions/upload-artifact@v4
       with:
