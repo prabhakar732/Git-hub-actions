@@ -11,7 +11,7 @@ jobs:
       - name: Execute shell script
         run: echo "Script is not available" > data.txt
       - name: upload artificate
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: upload-data
           path: data.txt
@@ -25,7 +25,7 @@ jobs:
       - name: display the data
         run: ls -l
       - name: download-artifict
-        uses: actions/download-artifcat@v3
+        uses: actions/download-artifcat@v4
         with:
           name: data.txt
 
