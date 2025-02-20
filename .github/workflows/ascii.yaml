@@ -1,6 +1,5 @@
 name: Ascii Workflow
 
-#on: [push]
 on: 
   workflow_dispatch:
     
@@ -11,13 +10,16 @@ jobs:
   ascii_job:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
-      - name: display-env
-        run: echo "varianle name: ${{name}}"
+
+      - name: Display environment variable
+        run: echo "Variable name: ${{ env.name }}"
+
       - name: Execute shell script
         run: echo "Script is not available" > data.txt
-      - name: upload artificate
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: upload-data
@@ -27,13 +29,14 @@ jobs:
     needs: ascii_job
     runs-on: ubuntu-latest
     steps:
-      - name: verigy the job
-        run: echo "run the job" > data.txt
-      - name: display the data
+      - name: Verify the job
+        run: echo "Run the job" > data.txt
+
+      - name: Display the data
         run: ls -l
-      - name: download-artifict
+
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: data.txt
-
-
+          name: upload-data
+          path: .
