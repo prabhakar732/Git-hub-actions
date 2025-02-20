@@ -1,7 +1,9 @@
 name: Ascii Workflow
 
 #on: [push]
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    
 env:
   name: AluriPrabhakar
 
