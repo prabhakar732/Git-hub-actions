@@ -14,4 +14,4 @@ jobs:
       - name: this code is ready to test on the runner.
         run: |
           ls ${{ github.workspace }}
-      - run: this job statis is ${{ job.status }} 
+      - run: "This job statis is ${{ job.status }} ."
