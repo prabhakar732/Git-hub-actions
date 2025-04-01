@@ -1,0 +1,40 @@
+name: dependent-job
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dependent-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: retrieve secret
+        env:
+          super-secret: ${{ secrets.retrivesecret }}
+        run: |
+          echo "retrieve secret is $super-secret"
+      
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./setup-server.sh
+
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 14, 16 ]
+    steps:
+      - run: ./build-server.sh
+      - name: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-versions: ${{ martix.node }}
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./test_server.sh
