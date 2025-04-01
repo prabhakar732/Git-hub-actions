@@ -1,0 +1,17 @@
+name: Githubaction  Demo
+
+on:
+  push
+jobs:
+  Explore-Github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run : echo " this job is troggred by ${{github.event_name}} event! "
+      - run: echo " this job is running on ${{ runner.os }} server hosted by "
+      - run: echo " your barnch at this ref ${{ github.ref }} and git hub repositery ${{ github.repositery }}."
+      - name: checkout repositery
+        uses: actions/checkout@v4
+      - name: this code is ready to test on the runner.
+        run: |
+          ls ${{ github.workspace }}
+      - run: this job statis is ${{ job.status }} 
