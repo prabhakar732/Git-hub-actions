@@ -1,0 +1,30 @@
+name: Argocd install
+
+on:
+  workflow_dispatch
+
+jobs:
+  install-argo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: setup kubeconfig
+        run: |
+          echo "${{ secrets.kube-config }} > kubeconfig.yaml
+          export KUBECONFIG=$pwd/kubeconfig.yaml
+      - name: install helm
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.12.0
+      - name: Add argocd helm repo
+        run: |
+          helm upgrade --install argocd argo/argo-cd \
+          --namespace argocd \
+          --create-namespace \
+          --set server.service.type=LoadBalancer \
+          --wait
+      - name: print argocd url
+        run: |
+          kubectl --kubeconfig=kubeconfig.yaml -n argocd get svc argocd-server
+        
