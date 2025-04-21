@@ -9,6 +9,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+
+      - name: Authcation to gcp
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
       - name: setup Google SDK
         uses: google-github-actions/setup-gcloud@v2
         with:
