@@ -47,5 +47,9 @@ jobs:
           --wait
       - name: print argocd url
         run: |
-          kubectl --kubeconfig=kubeconfig.yaml -n argocd get svc argocd-server
+          kubectl -n argocd get svc argocd-server
+      - name: Get ArgoCD Admin Password
+        run: |
+          kubectl -n argocd get secret argocd-initial-admin-secret \
+          -o jsonpath="{.data.password}" | base64 -d
         
